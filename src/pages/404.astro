@@ -5,14 +5,17 @@ import type { CollectionEntry } from "astro:content";
 import { getEntry, render } from "astro:content";
 const entry = (await getEntry("pages", "404")) as CollectionEntry<"pages">;
 const { Content } = await render(entry);
+
+// Provide fallback title
+const pageTitle = entry?.data?.title || "Page Not Found";
 ---
 
-<Base title={entry.data.title}>
+<Base title={pageTitle}>
   <section class="section">
     <div class="container">
       <div class="flex h-[40vh] items-center justify-center">
         <div class="text-center">
-          <h1 class="mb-4" set:html={markdownify(entry.data.title)} />
+          <h1 class="mb-4" set:html={markdownify(pageTitle)} />
           <Content />
         </div>
       </div>

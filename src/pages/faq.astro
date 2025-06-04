@@ -5,13 +5,17 @@ import type { CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";
 
 const entry = (await getEntry("faq", "-index")) as CollectionEntry<"faq">;
-const { title, description, faqs } = entry.data;
+const { title, description, faqs } = entry?.data || {};
+
+// Provide fallbacks if data is missing
+const pageTitle = title || "FAQ";
+const pageDescription = description || "Frequently Asked Questions";
 ---
 
-<Base title={title} description={description}>
+<Base title={pageTitle} description={pageDescription}>
   <section class="section">
     <div class="container">
-      <h1 class="text-center font-normal" set:html={markdownify(title)} />
+      <h1 class="text-center font-normal" set:html={markdownify(pageTitle)} />
       <div class="section row -mt-6">
         {
           faqs?.map((faq) => (

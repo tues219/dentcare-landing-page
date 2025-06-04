@@ -87,78 +87,37 @@ const contactCollection = defineCollection({
   }),
 });
 
-//pricing collection schema
-const pricingCollection = defineCollection({
-  loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/pricing" }),
+// FAQ collection schema
+const faqCollection = defineCollection({
+  loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/faq" }),
   schema: z.object({
     title: z.string(),
-    description: z.string().optional(),
+    description: z.string(),
     draft: z.boolean(),
-    plans: z
-      .array(
-        z.object({
-          title: z.string(),
-          subtitle: z.string().optional(),
-          price: z.number(),
-          type: z.string(),
-          recommended: z.boolean().optional(),
-          features: z.array(z.string()),
-          button: z.object({
-            label: z.string(),
-            link: z.string().default("/contact"),
-          }),
-        }),
-      )
-      .optional(),
-
-    contact_us: z
-      .object({
+    faqs: z.array(
+      z.object({
         title: z.string(),
-        content: z.string(),
-        image: z.string(),
-        button: z
-          .object({
-            enable: z.boolean().default(true),
-            label: z.string(),
-            link: z.string().default("/contact"),
-          })
-          .optional(),
-      })
-      .optional(),
+        answer: z.string(),
+      }),
+    ),
   }),
 });
 
-// FAQ collection schema
-// const faqCollection = defineCollection({
-//   loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/faq" }),
-//   schema: z.object({
-//     title: z.string(),
-//     description: z.string(),
-//     draft: z.boolean(),
-//     faqs: z.array(
-//       z.object({
-//         title: z.string(),
-//         answer: z.string(),
-//       }),
-//     ),
-//   }),
-// });
-
 // Blog collection schema
-// const blogCollection = defineCollection({
-//   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/blog" }),
-//   schema: z.object({
-//     title: z.string(),
-//     meta_title: z.string().optional(),
-//     description: z.string().optional(),
-//     date: z.date().optional(),
-//     image: z.string().optional(),
-//     authors: z.array(z.string()).default(["admin"]),
-//     categories: z.array(z.string()).default(["others"]),
-//     tags: z.array(z.string()).default(["others"]),
-//     draft: z.boolean().optional(),
-//   }),
-// });
+const blogCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/blog" }),
+  schema: z.object({
+    title: z.string(),
+    meta_title: z.string().optional(),
+    description: z.string().optional(),
+    date: z.date().optional(),
+    image: z.string().optional(),
+    authors: z.array(z.string()).default(["admin"]),
+    categories: z.array(z.string()).default(["others"]),
+    tags: z.array(z.string()).default(["others"]),
+    draft: z.boolean().optional(),
+  }),
+});
 
 // Pages collection schema
 const pagesCollection = defineCollection({
@@ -175,9 +134,8 @@ const pagesCollection = defineCollection({
 // Export collections
 export const collections = {
   homepage: homepageCollection,
-  // blog: blogCollection,
+  blog: blogCollection,
   pages: pagesCollection,
   contact: contactCollection,
-  pricing: pricingCollection,
-  // faq: faqCollection,
+  faq: faqCollection,
 };

@@ -33,14 +33,17 @@ const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
 const indexOfLastPost = currentPage * config.settings.pagination;
 const indexOfFirstPost = indexOfLastPost - config.settings.pagination;
 const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+// Provide fallback title if postIndex is not found
+const pageTitle = postIndex?.data?.title || "Blog";
 ---
 
-<Base title={postIndex?.data.title}>
+<Base title={pageTitle}>
   <section class="section">
     <div class="container">
       <h1
         class="mb-10 text-center font-normal lg:text-[56px]"
-        set:html={markdownify(postIndex?.data.title)}
+        set:html={markdownify(pageTitle)}
       />
       <div class="row">
         {

@@ -22,14 +22,14 @@ try {
 // Destructure the data from the loaded content
 const { banner, feature, services, faq, contact_us } = homepage.data;
 
-// Manually assign each feature item
-const feature1 = feature.features[0];
-const feature2 = feature.features[1];
-const feature3 = feature.features[2];
-const feature4 = feature.features[3];
+// Manually assign each feature item with safety checks
+const feature1 = feature?.features?.[0];
+const feature2 = feature?.features?.[1];
+const feature3 = feature?.features?.[2];
+const feature4 = feature?.features?.[3];
 
-const service1 = services[0];
-const service2 = services[1];
+const service1 = services?.[0];
+const service2 = services?.[1];
 ---
 
 <!-- banner -->

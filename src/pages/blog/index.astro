@@ -16,14 +16,17 @@ const posts = await getSinglePage("blog");
 const sortedPosts = sortByDate(posts);
 const totalPages = Math.ceil(posts.length / config.settings.pagination);
 const currentPosts = sortedPosts.slice(0, config.settings.pagination);
+
+// Provide fallback title if postIndex is not found
+const pageTitle = postIndex?.data?.title || "Blog";
 ---
 
-<Base title={postIndex?.data.title}>
+<Base title={pageTitle}>
   <section class="section">
     <div class="container">
       <h1
         class="text-center font-normal lg:text-[56px]"
-        set:html={markdownify(postIndex?.data.title)}
+        set:html={markdownify(pageTitle)}
       />
       <div class="row pb-12">
         <div class="row col-12 pb-24 pt-16">
