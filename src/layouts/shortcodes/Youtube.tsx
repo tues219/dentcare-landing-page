@@ -1,6 +1,6 @@
 import React from "react";
-import LiteYouTubeEmbed from "react-lite-youtube-embed";
-import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
+import LiteYouTubeEmbed from "lite-youtube-embed";
+import "lite-youtube-embed/src/lite-yt-embed.css";
 
 const Youtube = ({
   id,

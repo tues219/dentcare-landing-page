@@ -1,4 +1,5 @@
 ---
+// src/pages/en/index.astro
 import { Image } from "astro:assets";
 import Base from "@/layouts/Base.astro";
 import Cta from "@/layouts/components/Cta.astro";
@@ -6,20 +7,15 @@ import { markdownify } from "@/lib/utils/textConverter";
 import { getEntry } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
-// Get language from URL or default to English
-const lang = Astro.url.searchParams.get("lang") || "th";
 let homepage: CollectionEntry<"homepage">;
-try {
-  homepage = await getEntry("homepage", "th-index");
 
-  if (!homepage) {
-    throw new Error("No Thai homepage content found.");
-  }
+try {
+  homepage = await getEntry("homepage", "en-index");
 } catch (error) {
-  console.error("Failed to load Thai homepage:", error.message);
-  return Response.redirect(Astro.url.origin + "/500", 500);
+  console.error("Failed to load en-index:", error);
+  return Response.redirect(Astro.url.origin + "/", 302);
 }
-// Destructure the data from the loaded content
+
 const { banner, feature, services, faq, contact_us } = homepage.data;
 
 // Manually assign each feature item
@@ -32,47 +28,43 @@ const service1 = services[0];
 const service2 = services[1];
 ---
 
-<!-- banner -->
 <Base>
+  <!-- banner -->
   <section
-    class="relative bg-gradient-to-b from-[hsl(205,87%,94%)] to-[#4aa8f5] overflow-hidden"
+    class="relative min-h-[90vh] flex items-center justify-center text-left bg-gradient-to-b from-[#e3f2fd] to-[#5db0f3] overflow-hidden"
   >
-    <div class="container mx-auto px-6 pt-10 pb-0 md:pt-20 md:pb-0">
-      <div
-        class="flex flex-col md:flex-row items-stretch gap-10 relative min-h-[350px] md:min-h-[500px]"
-      >
+    <div class="container mx-auto px-6 py-20">
+      <div class="flex flex-col md:flex-row items-center gap-10 w-full">
         <!-- Left Side: Image -->
-        <div class="w-full md:w-5/12 flex flex-col justify-end relative">
-          <div class="w-full flex justify-center">
-            <img
-              src="/images/homepage.png"
-              alt="Banner Image"
-              width="300"
-              height="700"
-              class="object-contain h-auto absolute bottom-0"
-            />
-          </div>
+        <div class="w-full md:w-5/12">
+          {
+            banner?.image && (
+              <Image
+                class="absolute bottom-0 h-auto object-contain"
+                src={banner?.image}
+                width={300}
+                height={700}
+                alt="Banner Image"
+              />
+            )
+          }
         </div>
 
         <!-- Right Side: Text -->
-        <div
-          class="w-full md:w-7/12 flex flex-col justify-center text-center md:text-left"
-        >
-          <div
-            class="flex flex-col md:flex-row items-center gap-2 justify-center md:justify-start"
-          >
+        <div class="w-full md:w-7/12">
+          <div class="flex items-center gap-2">
             <h1
-              class="font-primary font-black text-4xl leading-tight md:text-5xl text-white"
+              class="font-primary text-4xl font-bold leading-tight md:text-5xl text-white"
             >
               {banner?.title}
             </h1>
-            <p class="text-white text-lg font-black">by DentCloud</p>
+            <p class="text-white text-lg font-bold">by DentCloud</p>
           </div>
 
           {
             banner?.content && (
               <h1
-                class="mt-4 text-2xl md:text-3xl text-white"
+                class="mt-4 text-4xl text-white"
                 set:html={markdownify(banner.content)}
               />
             )
@@ -81,16 +73,10 @@ const service2 = services[1];
           {
             banner?.button?.enable && (
               <a
-                class="flex items-center justify-center md:justify-start mt-6"
+                class="flex h-full items-center justify-start mt-4"
                 href="https://line.me/R/ti/p/@781qxigv"
               >
-                <img
-                  src="/images/Line.png"
-                  alt="Line Logo"
-                  width="120"
-                  height="40"
-                  class="h-10 w-auto"
-                />
+                <img src="/images/Line.png" alt="Logo" class="h-10 w-auto" />
               </a>
             )
           }
@@ -103,7 +89,7 @@ const service2 = services[1];
   <section id="features" class="w-full">
     <!-- Feature Section 1 -->
     <div
-      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#5db0f3] px-6 py-20 relative overflow-hidden"
     >
       <div
         class="mx-auto -mt-6 my-8 px-8 py-4 bg-white rounded-full shadow-md inline-block whitespace-nowrap z-10"
@@ -140,7 +126,7 @@ const service2 = services[1];
 
     <!-- Feature Section 2 -->
     <div
-      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#5db0f3] px-6 py-20 relative overflow-hidden"
     >
       <div
         class="mx-auto -mt-6 my-8 px-8 py-4 bg-white rounded-full shadow-md inline-block whitespace-nowrap z-10"
@@ -177,7 +163,7 @@ const service2 = services[1];
 
     <!-- Feature Section 3 -->
     <div
-      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#5db0f3] px-6 py-20 relative overflow-hidden"
     >
       <div
         class="mx-auto -mt-6 my-8 px-8 py-4 bg-white rounded-full shadow-md inline-block whitespace-nowrap z-10"
@@ -221,7 +207,7 @@ const service2 = services[1];
 
     <!-- Feature Section 4 -->
     <div
-      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#5db0f3] px-6 py-20 relative overflow-hidden"
     >
       <div
         class="mx-auto -mt-6 my-8 px-8 py-4 bg-white rounded-full shadow-md inline-block whitespace-nowrap z-10"
@@ -269,10 +255,11 @@ const service2 = services[1];
       }
     </div>
   </section>
+
   <!-- Services -->
   <section id="services" class="w-full">
     <div
-      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#5db0f3] px-6 py-20 relative overflow-hidden"
     >
       <div class="container mx-auto z-10">
         <h3 class="font-primary text-xl md:text-4xl font-bold text-gray-900">
@@ -311,7 +298,7 @@ const service2 = services[1];
     </div>
 
     <div
-      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#5db0f3] px-6 py-20 relative overflow-hidden"
     >
       <div class="container mx-auto px-6 py-20">
         <div class="flex flex-col md:flex-row items-center gap-10 w-full">
@@ -404,7 +391,7 @@ const service2 = services[1];
 
   <section id="faq" class="w-full">
     <div
-      class="min-h-[90vh] flex flex-col items-center text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="min-h-[90vh] flex flex-col items-center text-center bg-gradient-to-b from-[#e3f2fd] to-[#5db0f3] px-6 py-20 relative overflow-hidden"
     >
       <div class="container mx-auto px-4 md:px-8 flex justify-center">
         <ul
@@ -441,7 +428,7 @@ const service2 = services[1];
   <!-- Contact Us -->
   <section id="contact" class="w-full">
     <div
-      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#5db0f3] px-6 py-20 relative overflow-hidden"
     >
       <div class="container mx-auto w-full max-w-5xl flex flex-col gap-6">
         <!-- 🔵 First Box (LINE Add Friend) -->
@@ -492,7 +479,7 @@ const service2 = services[1];
     </div>
 
     <div
-      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#5db0f3] px-6 py-20 relative overflow-hidden"
     >
       <div class="flex items-center gap-3">
         <img
@@ -513,35 +500,32 @@ const service2 = services[1];
       >
         <div>
           <h2 class="text-white text-xl md:text-2xl font-bold mb-2">
-            รู้จัก DentCloud ให้มากขึ้น
+            Get to know DentCloud better
           </h2>
           <h3 class="text-white text-xl md:text-2xl font-bold">
-            DentCloud คือระบบจัดการคลินิกทันตกรรมที่ใช้ในคลินิกกว่า 1,800
-            แห่งทั่วประเทศ<br />
-            เราอยู่เบื้องหลังคลินิกที่คุณไว้วางใจ
+            DentCloud is a dental clinic management system used by over 1,800
+            clinics nationwide. <br />
+            We stand behind the clinics you trust.
           </h3>
         </div>
       </div>
       <p class="bottom-0 w-full text-sm text-gray-900 mb-1">
-        © 2025 DentCloud Co., Ltd. | All rights reserved <br /> นโยบายความเป็นส่วนตัว
-        | ติดต่อทีมงาน
+        © 2025 DentCloud Co., Ltd. | All rights reserved <br /> Privacy Policy |
+        Contact the team
       </p>
     </div>
   </section>
 </Base>
+
 <script>
   import { Swiper } from "swiper";
   import "swiper/css";
   import "swiper/css/pagination";
   import { Autoplay, Pagination } from "swiper/modules";
 
-  // astro:page-load event is fired when the page is loaded
   document.addEventListener("astro:page-load", () => {
     new Swiper(".service-carousel .swiper", {
       modules: [Pagination, Autoplay],
-      // autoplay: {
-      //   delay: 3000,
-      // },
       pagination: {
         type: "bullets",
         el: ".service-carousel .pagination",

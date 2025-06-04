@@ -3,7 +3,20 @@ import Logo from "@/components/Logo.astro";
 import { nav_button } from "@/config/config.json";
 import menu from "@/config/menu.json";
 
+export interface Props {
+  currentLang?: string;
+}
+// const currentLang = Astro.params.pathname || "th";
+const currentLang = Astro.url.pathname.startsWith("/en") ? "en" : "th";
 const pathname = Astro.url.pathname;
+console.log("Pathname:", Astro.url.pathname);
+console.log("Language:", currentLang);
+
+// Helper function to create language URLs
+const createLangUrl = (lang: string) => {
+  const currentPath = pathname.replace(/^\/en/, ""); // Remove /en prefix if exists
+  return lang === "th" ? currentPath : `/en${currentPath}`;
+};
 
 export interface ChildNavigationLink {
   name: string;
@@ -20,7 +33,7 @@ export interface NavigationLink {
 const { main }: { main: NavigationLink[] } = menu;
 ---
 
-<header class="header">
+<header class="header fixed top-0 left-0 w-full z-50 bg-white shadow-md">
   <nav class="navbar container">
     <!-- logo -->
     <div class="order-0">
@@ -84,8 +97,28 @@ const { main }: { main: NavigationLink[] } = menu;
               </li>
             ) : (
               <li class="nav-item">
-                <a
+                {/* <a
                   href={menu.url}
+                  class={`nav-link block ${
+                    pathname === menu.url && "nav-link-active"
+                  }`}
+                >
+                  {menu.name}
+                </a> */}
+                {/* <a
+                  href={`${currentLang === "en" ? "/en" : ""}${menu.url}`}
+                  class={`nav-link block ${
+                    pathname === menu.url && "nav-link-active"
+                  }`}
+                >
+                  {menu.name}
+                </a> */}
+                <a
+                  href={
+                    menu.url.startsWith("#")
+                      ? `${currentLang === "en" ? "/en/" : "/"}${menu.url}` // ensure trailing slash
+                      : `${currentLang === "en" ? "/en" : ""}${menu.url}`
+                  }
                   class={`nav-link block ${
                     pathname === menu.url && "nav-link-active"
                   }`}
@@ -103,6 +136,8 @@ const { main }: { main: NavigationLink[] } = menu;
             <a
               class="btn btn-primary z-0 ml-auto py-[14px]"
               href={nav_button.link}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               {nav_button.label}
             </a>
@@ -110,6 +145,65 @@ const { main }: { main: NavigationLink[] } = menu;
         )
       }
     </ul>
+
+    <!-- Desktop Language Switcher -->
+    <div class="order-1 ml-4 hidden items-center md:order-2 md:flex">
+      <div
+        class="language-switcher flex rounded-full border border-gray-300 p-1"
+      >
+        <a
+          href={createLangUrl("th")}
+          class={`rounded-full px-3 py-1 text-sm transition-all duration-200 ${
+            currentLang === "th"
+              ? "bg-primary text-white font-bold"
+              : "text-gray-700 hover:bg-gray-100"
+          }`}
+          aria-current={currentLang === "th" ? "page" : "false"}
+        >
+          ไทย
+        </a>
+        <a
+          href={createLangUrl("en")}
+          class={`rounded-full px-3 py-1 text-sm transition-all duration-200 ${
+            currentLang === "en"
+              ? "bg-primary text-white font-bold"
+              : "text-gray-700 hover:bg-gray-100"
+          }`}
+          aria-current={currentLang === "en" ? "page" : "false"}
+        >
+          EN
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile Language Switcher -->
+    <div class="order-1 ml-4 flex items-center md:hidden">
+      <div
+        class="language-switcher flex rounded-full border border-gray-300 p-1"
+      >
+        <a
+          href={createLangUrl("th")}
+          class={`rounded-full px-2 py-1 text-xs transition-all duration-200 ${
+            currentLang === "th"
+              ? "bg-primary text-white font-bold"
+              : "text-gray-700 hover:bg-gray-100"
+          }`}
+        >
+          ไทย
+        </a>
+        <a
+          href={createLangUrl("en")}
+          class={`rounded-full px-2 py-1 text-xs transition-all duration-200 ${
+            currentLang === "en"
+              ? "bg-primary text-white font-bold"
+              : "text-gray-700 hover:bg-gray-100"
+          }`}
+        >
+          EN
+        </a>
+      </div>
+    </div>
+
     {
       nav_button.enable && (
         <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 md:flex md:min-w-[150px] lg:min-w-[200px]">
@@ -124,3 +218,35 @@ const { main }: { main: NavigationLink[] } = menu;
     }
   </nav>
 </header>
+<style>
+  .language-switcher {
+    transition: all 0.3s ease;
+  }
+  .language-switcher button {
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .language-switcher button[aria-current="true"] {
+    font-weight: bold;
+  }
+
+  .lang-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    background: white;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .lang-btn:hover {
+    background: #f3f4f6;
+  }
+
+  .lang-btn.active {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+  }
+</style>

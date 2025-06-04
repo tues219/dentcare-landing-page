@@ -5,25 +5,23 @@
       "url": "/"
     },
     {
-      "name": "Blog",
-      "url": "/blog"
+      "name": "Features",
+      "url": "#features"
     },
     {
-      "name": "Pricing",
-      "url": "/pricing"
-    },
-    {
-      "name": "Contact",
-      "url": "/contact"
+      "name": "How It Works",
+      "url": "#services"
     },
     {
       "name": "FAQ",
-      "url": "/faq"
+      "url": "#faq"
     },
     {
-      "name": "Elements",
-      "url": "/elements"
+      "name": "Contact Us",
+      "url": "#contact"
     }
+
+   
   ],
   "footer": [
     {

@@ -3,7 +3,7 @@ import { defineCollection, z } from "astro:content";
 
 // Homepage collection schema
 const homepageCollection = defineCollection({
-  loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/homepage" }),
+  loader: glob({ pattern: "**/*-index.{md,mdx}", base: "src/content/homepage" }),
   schema: z.object({
     banner: z
       .object({
@@ -24,8 +24,9 @@ const homepageCollection = defineCollection({
       features: z.array(
         z.object({
           name: z.string(),
-          icon: z.string().optional(),
+          image: z.string(),
           content: z.string().optional(),
+          title: z.string(),
         }),
       ),
     }),
@@ -45,14 +46,16 @@ const homepageCollection = defineCollection({
         }),
       )
       .optional(),
-    workflow: z
-      .object({
-        title: z.string().optional(),
-        description: z.string().optional(),
-        image: z.string(),
-      })
+    faq: z
+      .array(
+        z.object({
+          title: z.string().optional(),
+          content: z.string().optional(),
+          image: z.string().optional()
+        })
+      )
       .optional(),
-    call_to_action: z
+    contact_us: z
       .object({
         title: z.string().optional(),
         content: z.string().optional(),
@@ -108,7 +111,7 @@ const pricingCollection = defineCollection({
       )
       .optional(),
 
-    call_to_action: z
+    contact_us: z
       .object({
         title: z.string(),
         content: z.string(),
@@ -126,36 +129,36 @@ const pricingCollection = defineCollection({
 });
 
 // FAQ collection schema
-const faqCollection = defineCollection({
-  loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/faq" }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    draft: z.boolean(),
-    faqs: z.array(
-      z.object({
-        title: z.string(),
-        answer: z.string(),
-      }),
-    ),
-  }),
-});
+// const faqCollection = defineCollection({
+//   loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/faq" }),
+//   schema: z.object({
+//     title: z.string(),
+//     description: z.string(),
+//     draft: z.boolean(),
+//     faqs: z.array(
+//       z.object({
+//         title: z.string(),
+//         answer: z.string(),
+//       }),
+//     ),
+//   }),
+// });
 
 // Blog collection schema
-const blogCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/blog" }),
-  schema: z.object({
-    title: z.string(),
-    meta_title: z.string().optional(),
-    description: z.string().optional(),
-    date: z.date().optional(),
-    image: z.string().optional(),
-    authors: z.array(z.string()).default(["admin"]),
-    categories: z.array(z.string()).default(["others"]),
-    tags: z.array(z.string()).default(["others"]),
-    draft: z.boolean().optional(),
-  }),
-});
+// const blogCollection = defineCollection({
+//   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/blog" }),
+//   schema: z.object({
+//     title: z.string(),
+//     meta_title: z.string().optional(),
+//     description: z.string().optional(),
+//     date: z.date().optional(),
+//     image: z.string().optional(),
+//     authors: z.array(z.string()).default(["admin"]),
+//     categories: z.array(z.string()).default(["others"]),
+//     tags: z.array(z.string()).default(["others"]),
+//     draft: z.boolean().optional(),
+//   }),
+// });
 
 // Pages collection schema
 const pagesCollection = defineCollection({
@@ -172,9 +175,9 @@ const pagesCollection = defineCollection({
 // Export collections
 export const collections = {
   homepage: homepageCollection,
-  blog: blogCollection,
+  // blog: blogCollection,
   pages: pagesCollection,
   contact: contactCollection,
   pricing: pricingCollection,
-  faq: faqCollection,
+  // faq: faqCollection,
 };
