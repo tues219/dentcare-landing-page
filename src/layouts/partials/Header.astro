@@ -159,6 +159,7 @@ const { main }: { main: NavigationLink[] } = menu;
               : "text-gray-700 hover:bg-gray-100"
           }`}
           aria-current={currentLang === "th" ? "page" : "false"}
+          onclick="event.preventDefault(); window.location.href=this.href;"
         >
           ไทย
         </a>
@@ -169,6 +170,7 @@ const { main }: { main: NavigationLink[] } = menu;
               ? "bg-primary text-white font-bold"
               : "text-gray-700 hover:bg-gray-100"
           }`}
+          onclick="event.preventDefault(); window.location.href=this.href;"
           aria-current={currentLang === "en" ? "page" : "false"}
         >
           EN
@@ -188,6 +190,7 @@ const { main }: { main: NavigationLink[] } = menu;
               ? "bg-primary text-white font-bold"
               : "text-gray-700 hover:bg-gray-100"
           }`}
+          onclick="event.preventDefault(); window.location.href=this.href;"
         >
           ไทย
         </a>
@@ -198,6 +201,7 @@ const { main }: { main: NavigationLink[] } = menu;
               ? "bg-primary text-white font-bold"
               : "text-gray-700 hover:bg-gray-100"
           }`}
+          onclick="event.preventDefault(); window.location.href=this.href;"
         >
           EN
         </a>
