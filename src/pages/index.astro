@@ -34,14 +34,14 @@ const service2 = services?.[1];
 
 <!-- banner -->
 <Base>
-  <section
+  <!-- <section
     class="relative bg-gradient-to-b from-[hsl(205,87%,94%)] to-[#4aa8f5] overflow-hidden"
   >
     <div class="container mx-auto px-6 pt-10 pb-0 md:pt-20 md:pb-0">
       <div
         class="flex flex-col md:flex-row items-stretch gap-10 relative min-h-[350px] md:min-h-[500px]"
       >
-        <!-- Left Side: Image -->
+       
         <div class="w-full md:w-5/12 flex flex-col justify-end relative">
           <div class="w-full flex justify-center">
             <img
@@ -54,7 +54,7 @@ const service2 = services?.[1];
           </div>
         </div>
 
-        <!-- Right Side: Text -->
+       
         <div
           class="w-full md:w-7/12 flex flex-col justify-center text-center md:text-left"
         >
@@ -97,13 +97,121 @@ const service2 = services?.[1];
         </div>
       </div>
     </div>
+  </section> -->
+
+  <!-- <section
+    class="relative bg-gradient-to-b from-[hsl(205,87%,94%)] to-[#4aa8f5] overflow-hidden"
+  >
+    <div class="container mx-auto px-4 pt-10 pb-10">
+      <div class="flex flex-row items-center gap-4 sm:gap-6 md:gap-10">
+       
+        <div class="w-5/12 flex items-end justify-center">
+          <img
+            src="/images/homepage.png"
+            alt="Banner Image"
+            class="object-contain h-[200px] sm:h-[300px] md:h-[500px] w-auto"
+          />
+        </div>
+
+        
+        <div class="w-7/12 text-left">
+          <div class="flex flex-col gap-1">
+            <h1
+              class="font-primary font-black text-xl sm:text-3xl md:text-5xl text-white leading-tight"
+            >
+              {banner?.title}
+            </h1>
+            <p class="text-white text-sm sm:text-base font-semibold">
+              by DentCloud
+            </p>
+          </div>
+
+          {
+            banner?.content && (
+              <h1
+                class="mt-4 text-sm sm:text-lg md:text-2xl text-white"
+                set:html={markdownify(banner.content)}
+              />
+            )
+          }
+
+          {
+            banner?.button?.enable && (
+              <a
+                class="flex items-center mt-6"
+                href="https://line.me/R/ti/p/@781qxigv"
+              >
+                <img
+                  src="/images/Line.png"
+                  alt="Line Logo"
+                  class="h-8 sm:h-10 w-auto"
+                />
+              </a>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <section
+    class="bg-gradient-to-b from-[hsl(205,87%,94%)] to-[#4aa8f5] overflow-hidden"
+  >
+    <div class="flex flex-row w-full min-h-[400px] md:min-h-[90vh]">
+      <!-- Left: Image pinned bottom -->
+      <div class="w-5/12 relative flex-shrink-0">
+        <img
+          src="/images/homepage.png"
+          alt="Banner Image"
+          class="absolute bottom-0 left-1/2 -translate-x-1/2 max-h-[70vh] w-auto object-contain"
+        />
+      </div>
+
+      <!-- Right: Text Content -->
+      <div class="w-7/12 flex flex-col justify-center px-4 sm:px-6 py-10">
+        <div>
+          <div class="flex flex-col gap-2">
+            <h1
+              class="font-primary font-black text-2xl sm:text-4xl md:text-5xl text-white leading-tight"
+            >
+              {banner?.title}
+            </h1>
+            <p class="text-white text-base font-semibold">by DentCloud</p>
+          </div>
+
+          {
+            banner?.content && (
+              <div
+                class="mt-4 text-sm sm:text-lg md:text-2xl text-white"
+                set:html={markdownify(banner.content)}
+              />
+            )
+          }
+
+          {
+            banner?.button?.enable && (
+              <a
+                class="inline-block mt-6"
+                href="https://line.me/R/ti/p/@781qxigv"
+              >
+                <img
+                  src="/images/Line.png"
+                  alt="Line Logo"
+                  class="h-10 w-auto"
+                />
+              </a>
+            )
+          }
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Features Main wrapper with one shared id for navigation -->
   <section id="features" class="w-full">
     <!-- Feature Section 1 -->
     <div
-      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden min-h-[400px] md:min-h-[90vh]"
     >
       <div
         class="mx-auto -mt-6 my-8 px-8 py-4 bg-white rounded-full shadow-md inline-block whitespace-nowrap z-10"
@@ -115,7 +223,7 @@ const service2 = services?.[1];
       {
         feature1?.image && (
           <Image
-            class="absolute bottom-0 mx-auto left-0 right-0 h-auto object-contain"
+            class="absolute bottom-0 mx-auto left-0 right-0 h-auto object-contain w-[180px] sm:w-[220px] md:w-[280px] lg:w-[300px]"
             src={feature1.image}
             width={300}
             height={700}
@@ -140,7 +248,7 @@ const service2 = services?.[1];
 
     <!-- Feature Section 2 -->
     <div
-      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden min-h-[400px] md:min-h-[90vh]"
     >
       <div
         class="mx-auto -mt-6 my-8 px-8 py-4 bg-white rounded-full shadow-md inline-block whitespace-nowrap z-10"
@@ -152,7 +260,7 @@ const service2 = services?.[1];
       {
         feature2?.image && (
           <Image
-            class="absolute bottom-0 mx-auto left-0 right-0 h-auto object-contain"
+            class="absolute bottom-0 mx-auto left-0 right-0 h-auto object-contain w-[180px] sm:w-[220px] md:w-[280px] lg:w-[300px]"
             src={feature2.image}
             width={300}
             height={700}
@@ -177,12 +285,14 @@ const service2 = services?.[1];
 
     <!-- Feature Section 3 -->
     <div
-      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden min-h-[400px] md:min-h-[90vh]"
     >
       <div
         class="mx-auto -mt-6 my-8 px-8 py-4 bg-white rounded-full shadow-md inline-block whitespace-nowrap z-10"
       >
-        <h3 class="font-primary text-xl md:text-3xl font-bold text-blue-600">
+        <h3
+          class="font-primary text-sm sm:text-base md:text-2xl lg:text-3xl font-bold text-blue-600"
+        >
           {feature3?.title}
         </h3>
       </div>
@@ -190,13 +300,13 @@ const service2 = services?.[1];
         src="/images/feature-3.1.png"
         width={250}
         height={400}
-        class="absolute left-[240px] top-1/2 -translate-y-1/2 ml-6 object-contain z-0"
+        class="absolute z-0 left-[20px] sm:left-[80px] md:left-[240px] top-1/2 -translate-y-1/2 w-[100px] sm:w-[160px] md:w-[250px] h-auto object-contain"
         alt="Static left image"
       />
       {
         feature3?.image && (
           <Image
-            class="absolute bottom-0 mx-auto left-0 right-0 h-auto object-contain"
+            class="absolute bottom-0 mx-auto left-0 right-0 z-0 h-auto object-contain w-[180px] sm:w-[220px] md:w-[300px]"
             src={feature3.image}
             width={300}
             height={700}
@@ -210,7 +320,7 @@ const service2 = services?.[1];
           <div class="absolute bottom-0 z-10 w-full px-6 pb-6 text-center">
             <div class="container mx-auto">
               <p
-                class="text-lg text-gray-900 font-extrabold"
+                class="text-sm sm:text-base text-gray-900 font-extrabold"
                 set:html={markdownify(feature3.content)}
               />
             </div>
@@ -221,12 +331,14 @@ const service2 = services?.[1];
 
     <!-- Feature Section 4 -->
     <div
-      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden min-h-[400px] md:min-h-[90vh]"
     >
       <div
         class="mx-auto -mt-6 my-8 px-8 py-4 bg-white rounded-full shadow-md inline-block whitespace-nowrap z-10"
       >
-        <h3 class="font-primary text-xl md:text-3xl font-bold text-blue-600">
+        <h3
+          class="font-primary text-sm sm:text-base md:text-2xl lg:text-3xl font-bold text-blue-600"
+        >
           {feature4?.title}
         </h3>
       </div>
@@ -234,13 +346,13 @@ const service2 = services?.[1];
         src="/images/feature-4.1.png"
         width={150}
         height={300}
-        class="absolute left-[380px] top-1/2 -translate-y-1/2 ml-6 object-contain z-0"
+        class="absolute left-[40px] sm:left-[120px] md:left-[380px] top-1/2 -translate-y-1/2 object-contain z-0 w-[80px] sm:w-[110px] md:w-[150px]"
         alt="Static left image"
       />
       {
         feature4?.image && (
           <Image
-            class="absolute bottom-0 mx-auto left-0 right-0 h-auto object-contain"
+            class="absolute bottom-0 mx-auto left-0 right-0 h-auto object-contain w-[180px] sm:w-[220px] md:w-[300px]"
             src={feature4.image}
             width={300}
             height={700}
@@ -252,7 +364,7 @@ const service2 = services?.[1];
         src="/images/feature-4.2.png"
         width={150}
         height={320}
-        class="absolute right-[380px] top-1/2 -translate-y-1/2 ml-6 object-contain z-0"
+        class="absolute right-[40px] sm:right-[120px] md:right-[380px] top-1/2 -translate-y-1/2 object-contain z-0 w-[80px] sm:w-[110px] md:w-[150px]"
         alt="Static left image"
       />
       {
@@ -260,7 +372,7 @@ const service2 = services?.[1];
           <div class="absolute bottom-0 z-10 w-full px-6 pb-6 text-center">
             <div class="container mx-auto">
               <p
-                class="text-lg text-gray-900 font-extrabold"
+                class="text-sm sm:text-base text-gray-900 font-extrabold"
                 set:html={markdownify(feature4.content)}
               />
             </div>
