@@ -384,20 +384,24 @@ const service2 = services?.[1];
   <!-- Services -->
   <section id="services" class="w-full">
     <div
-      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden min-h-[400px] md:min-h-[90vh]"
     >
       <div class="container mx-auto z-10">
-        <h3 class="font-primary text-xl md:text-4xl font-bold text-gray-900">
+        <h3
+          class="font-primary text-xl sm:text-2xl md:text-4xl font-bold text-gray-900"
+        >
           {service1.title}
         </h3>
         <br />
         <p
-          class="text-2xl text-gray-900 font-medium"
+          class="text-sm sm:text-lg md:text-2xl text-gray-900 font-medium"
           set:html={service1.content}
         />
       </div>
 
-      <div class="flex justify-center items-center gap-8 px-6 py-10">
+      <div
+        class="flex flex-col md:flex-row justify-center items-center gap-8 px-4 sm:px-6 py-10 w-full max-w-6xl"
+      >
         <Image
           src={service1.images[0]}
           alt="Left Image"
@@ -423,14 +427,16 @@ const service2 = services?.[1];
     </div>
 
     <div
-      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden min-h-[400px] md:min-h-[90vh]"
     >
       <div class="container mx-auto px-6 py-20">
         <div class="flex flex-col md:flex-row items-center gap-10 w-full">
           <!-- Left Side: Image -->
-          <div class="w-full md:w-6/12">
+          <div
+            class="w-full md:w-6/12 flex justify-center md:justify-start relative z-0"
+          >
             <Image
-              class="absolute left-[140px] top-1/2 -translate-y-1/2 ml-6 object-contain z-0 shadow-none"
+              class="object-contain w-auto max-w-[300px] h-auto md:absolute md:left-[100px] md:top-1/2 md:-translate-y-1/2 ml-6 shadow-none"
               src={service2?.images[0]}
               width={300}
               height={700}
@@ -516,7 +522,7 @@ const service2 = services?.[1];
 
   <section id="faq" class="w-full">
     <div
-      class="min-h-[90vh] flex flex-col items-center text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="flex flex-col items-center text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden min-h-[400px] md:min-h-[90vh]"
     >
       <div class="container mx-auto px-4 md:px-8 flex justify-center">
         <ul
@@ -553,7 +559,7 @@ const service2 = services?.[1];
   <!-- Contact Us -->
   <section id="contact" class="w-full">
     <div
-      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden min-h-[400px] md:min-h-[90vh]"
     >
       <div class="container mx-auto w-full max-w-5xl flex flex-col gap-6">
         <!-- 🔵 First Box (LINE Add Friend) -->
@@ -604,19 +610,19 @@ const service2 = services?.[1];
     </div>
 
     <div
-      class="min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
+      class="min-h-[400px] md:min-h-[90vh] flex flex-col items-center justify-between text-center bg-gradient-to-b from-[#e3f2fd] to-[#4aa8f5] px-6 py-20 relative overflow-hidden"
     >
       <div class="flex items-center gap-3">
         <img
           src="/images/logo.png"
           alt="Logo 1"
-          class="w-40 h-40 object-contain"
+          class="w-24 h-24 md:w-40 md:h-40 object-contain"
         />
         <span class="text-xl font-semibold text-white mx-4">By</span>
         <img
           src="/images/dentcloud.png"
           alt="Logo 2"
-          class="w-40 h-40 object-contain"
+          class="w-24 h-24 md:w-40 md:h-40 object-contain"
         />
       </div>
 
@@ -624,19 +630,19 @@ const service2 = services?.[1];
         class="bg-[#2196f3] text-white rounded-2xl px-6 py-6 flex flex-col md:flex-row items-center justify-between text-left shadow-md"
       >
         <div>
-          <h2 class="text-white text-xl md:text-2xl font-bold mb-2">
+          <h2 class="text-white text-lg md:text-2xl font-bold mb-2">
             รู้จัก DentCloud ให้มากขึ้น
           </h2>
-          <h3 class="text-white text-xl md:text-2xl font-bold">
+          <h3 class="text-white text-base md:text-2xl font-bold">
             DentCloud คือระบบจัดการคลินิกทันตกรรมที่ใช้ในคลินิกกว่า 1,800
             แห่งทั่วประเทศ<br />
             เราอยู่เบื้องหลังคลินิกที่คุณไว้วางใจ
           </h3>
         </div>
       </div>
-      <p class="bottom-0 w-full text-sm text-gray-900 mb-1">
-        © 2025 DentCloud Co., Ltd. | All rights reserved <br /> นโยบายความเป็นส่วนตัว
-        | ติดต่อทีมงาน
+      <p class="bottom-0 w-full text-sm md:text-sm text-gray-900">
+        <a href="https://www.dentcloud.app/">© 2025 DentCloud Co., Ltd.</a>|
+        All rights reserved <br /> นโยบายความเป็นส่วนตัว | ติดต่อทีมงาน
       </p>
     </div>
   </section>
